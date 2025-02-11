@@ -7,7 +7,7 @@ two1mux dut(.in0(in0),.in1(in1),.s(s),.out(out));
 
 initial begin
 
-    in0 = 0; in1 = 0; s = 0;
+       in0 = 0; in1 = 0; s = 0;
     #5 in0 = 0; in1 = 0; s = 1;
     #5 in0 = 0; in1 = 1; s = 0;
     #5 in0 = 0; in1 = 1; s = 1;
