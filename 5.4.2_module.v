@@ -24,13 +24,18 @@ module my_not(input x,output result_not);
   
 endmodule
 
-module my_xor(input x,y,output result_xor);
-  wire not_x,not_y,result_and1,result_and2,result_or;
+module my_xor(input x, y, output result_xor);
+  wire not_x, not_y, result_and1, result_and2;
 
-  my_not not1(not_x,x);
-  my_not not2(not_y,y);
-  my_and and1(result_and1,not_x,y);
-  my_and and2(result_and2,not_y,x);
-  my_or or1(result_or,result_and1,result_and2);
+  // Instantiating NOT gates
+  my_not not1 (.x(x), .result_not(not_x));
+  my_not not2 (.x(y), .result_not(not_y));
+
+  // Instantiating AND gates
+  my_and and1 (.x(not_x), .y(y), .result_and(result_and1));
+  my_and and2 (.x(not_y), .y(x), .result_and(result_and2));
+
+  // Instantiating OR gate
+  my_or or1 (.x(result_and1), .y(result_and2), .result_or(result_xor));
 
 endmodule
